@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+    }
+    body {
+      margin: 0;
+    }
+
+    div.dp {
+      background-color: black;
+      color: white;
+      min-width: 600px;
+    }
+
+    p {
+      width: 600px;
+      margin: auto;
+    }
+    .pp {
+      margin: 16px auto;
+    }
+
+    ul {
+      width: 600px;
+      margin: auto;
+      list-style: none;
+    }
+    ul li {
+      width: 174px;
+      height: 34px;
+      border: 3px solid;
+      background-color: pink;
+      float: left;
+      margin: 15px 0;
+      text-align: center;
+      line-height: 30px;
+    }
+    ul li:hover {
+      background-color: red;
+    }
+    
+    ul li:nth-child(3n-1) {
+      margin: 15px 30px;
+    }
+
+    div.dli div {
+      width: 600px;
+      margin: auto;
+      border-bottom: 1px dotted black;
+    }
+    .dli :last-child {
+      border: none;
+    }
+
+    div.dc {
+      background-color: yellow;
+      margin: 16px 0;
+    }
+    .dc div {
+      width: 100px;
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="dp">
+    <p>hello world</p>
+  </div>
+  <p class="pp">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut beatae, alias, voluptatum soluta quisquam optio
+    corrupti cumque debitis magni aspernatur ullam velit ratione culpa maxime aperiam? Corporis reprehenderit veniam
+    architecto. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad cum voluptatibus tempora harum similique,
+    mollitia repellat cupiditate maiores a officiis fuga doloribus, quas, repudiandae quis maxime ratione soluta natus
+    numquam! Lorem ipsum dolor sit </p>
+  <ul>
+    <li>aaa</li>
+    <li>bbb</li>
+    <li>ccc</li>
+    <li>ddd</li>
+    <li>eee</li>
+    <li>fff</li>
+    <li>ggg</li>
+    <li>hhh</li>
+    <li>iii</li>
+    <li>jjj</li>
+    <li>kkk</li>
+    <li>lll</li>
+  </ul>
+  <div class="dli">
+  <div>link</div>
+  <div>link</div>
+  <div>link</div>
+  <div>link</div>
+  <div>link</div>
+  </div>
+  <div class="dc">
+    <div>&copy;版权所有</div>
+    <div>&copy;块元素</div>
+  </div>
+</body>
+
+</html>
