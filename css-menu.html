@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* optimized(优化)： */
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    li {
+      width: 150px;
+      background-color: orange;
+      white-space: nowrap;
+      text-align: center;
+      position: relative;
+      border: 1px solid;
+    }
+    ul.menu_list > li {
+      display: inline-block;
+    }
+    ul.menu_list ul {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 100%;
+    }
+    li:hover {
+      background-color: blue;
+    }
+    li:hover > ul {
+      display: block;
+     
+    }
+    /* file的子元素(第一层子元素ul)的子元素(第二层及以后所有层的ul) */
+    ul.menu_list ul ul {
+      top: 0;
+      left: 100%;
+    }
+
+    /* ul {
+      list-style: none;
+      padding: 0;
+      display: none;
+    }
+    li{
+      width: 200px;
+      border: 1px solid;
+      text-align: center;
+      line-height: 30px;
+    }
+    .list {
+      display: block;
+    }
+    .list > li {
+      background-color: #bfa;
+      float: left;
+    }
+    .list li > ul {
+      background-color: blue;
+    }
+    .list li > ul  ul {
+      background-color: gray;
+    }
+    
+    .list li:hover > ul {
+      display: block;
+    }
+    .list > li > ul {
+      position: relative;
+    }
+    .list > li > ul ul {
+      position: absolute;
+      left: 200px;
+    } */
+    
+  </style>
+</head>
+<body>
+  <div class="menu">
+    <ul class="menu_list">
+      <li>file
+        <ul>
+          <li>new file
+            <ul>
+              <li>a
+                <ul>
+                  <li>a1</li>
+                  <li>a2</li>
+                </ul>
+              </li>
+              <li>b
+                <ul>
+                  <li>b1</li>
+                  <li>b2
+                    <ul>
+                      <li>b2-1</li>
+                      <li>b2-2</li>
+                      <li>b2-3</li>
+                    </ul>
+                  </li>
+                  <li>b3</li>
+                </ul>
+              </li>
+              <li>c</li>
+            </ul>
+          </li>
+          <li>open file</li>
+          <li>open folder</li>
+        </ul>
+      </li>
+      <li>edit</li>
+      <li>selection
+        <ul>
+          <li>selection1</li>
+          <li>selection2</li>
+          <li>selection3</li>
+        </ul>
+      </li>
+      <li>view</li>
+      <li>go</li>
+    </ul>
+  </div>
+</body>
+</html>

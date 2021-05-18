@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      min-width: 800px;
+      margin: 0;
+      position: relative;
+      /* 为设置box-sizing为border-box，添加边框等内容会隐形增加其宽高 */
+    }
+    * {
+      box-sizing: border-box;
+    }
+    header {
+      height: 60px;
+      background-color: #bfa;
+    }
+    aside {
+      width: 170px;
+      height: calc(100vh - 60px);
+      background-color: orange;
+    }
+    main {
+      width: calc(100% - 170px);
+      height: calc(100vh - 60px);;
+      background-color: blue;
+      /* 当开启了绝对定位以后：
+      水平方向的布局等式就需要添加left 和right 两个值
+      当发生过度约束：
+      如果9个值中没有 auto 则自动调整right值以使等式满足
+      如果有 auto ，则自动调整auto的值以使等式满足
+      可设置auto的值： margin width left right
+      由于 left 和 right 的值默认是auto，所以如果不知道left和right，则等式不满足时，会自动调整这两个值 */
+      /* 固定定位的元素不会随网页的滚动条滚动 */
+      xposition: fixed;
+      /* 粘滞定位和相对定位的特点基本一致，不同的是粘滞定位可以在元素到达某个位置时将其固定 */
+      xposition: sticky;
+      position: absolute;
+      top: 60px;
+      left: 170px;
+      overflow: scroll;
+      font-size: 2em;
+      /* 对于开启了定位元素，可以通过 z-index 属性来指定元素的层级，z-index 需要一个整数作为参数，值越大元素的层级越高，元素越优先显示
+      如果元素的层级一样，则优先显示靠下的元素
+      祖先的元素层级再高也不会盖住后代元素 */
+    }
+  </style>
+</head>
+<body>
+  <header></header>
+  <aside></aside>
+  <main>Lolorem ipsum dolor
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa deleniti, fuga atque nam sunt quidem cum debitis error labore, facilis dolore doloremque voluptates, tempora et hic nemo placeat similique voluptatem.
+  Asperiores expedita laborum fugiat suscipit eaque repellendus consequatur error necessitatibus debitis voluptatibus neque nostrum et officiis, dolorem quibusdam ut, eos libero blanditiis quae quam a vitae natus molestiae sequi. Blanditiis?
+  Iusto quaerat ipsa blanditiis illo facilis amet rem necessitatibus esse, ex provident iste facere inventore. Voluptate possimus doloremque eveniet minus, necessitatibus voluptates illo quidem, est dolores totam aspernatur laudantium laborum!
+  Sunt, temporibus impedit? Suscipit, porro eligendi, est delectus fugiat in maiores cum ipsum facilis cumque quisquam nisi enim saepe animi. Beatae dolorum ipsum dicta eaque perferendis quisquam corrupti sit similique?
+  Dolor quibusdam doloribus sint laboriosam unde aliquid mollitia voluptatem. Repudiandae itaque cupiditate enim libero tenetur nemo, quas corporis facere error doloremque saepe, voluptates nesciunt, similique ex illum impedit veritatis voluptatum.
+  </main>
+</body>
+</html>

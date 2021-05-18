@@ -63,6 +63,7 @@
       font-size: 32px;
     }
     .b input {
+      /*correct:  font: inherit; */
       font-size: inherit;
       text-transform: uppercase;
     }
@@ -81,14 +82,17 @@
       text-align: right;
     }
     .a b {
-      text-decoration: underline;
-      color: red;
+      /* correct */
+      text-decoration: underline red solid;
+      color: lightblue;
+      xtext-decoration: underline;
+      xcolor: red;
     }
-    .a b span {
+    /* .a b span {
       color: lawngreen;
       text-decoration: none;
-    }
-    .a span {
+    } */
+    .a > span {
       text-decoration: underline line-through;
       font-weight: bold;
     }

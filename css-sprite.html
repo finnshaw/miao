@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    h3 {
+      margin: 0 auto;
+      text-align: center;
+    }
+    .container {
+      width: 700px;
+      margin: auto;
+    }
+    span {
+      display: inline-block;
+      border: 1px solid orange;
+      margin: 80px;
+      background-image: url(../picture-material/nav_logo240_hr.webp);
+      background-repeat: no-repeat;
+    }
+    [icon*="star"] {
+      width: 24px;
+      height: 23px;
+      background-position: -165px -460px;
+    }
+    [icon*="goo"] {
+      width: 148px;
+      height: 49px;
+      background-position: -59px -161px;
+    }
+    [icon*="pho"] {
+      width: 26px;
+      height: 32px;
+      background-position: -28px -178px;
+    }
+  </style>
+</head>
+<body>
+    <h3>利用background-position + 设置元素的宽高切图</h3>
+    <div class="container">
+    <span icon="half-star"></span>
+    <span icon="google"></span>
+    <span icon="phone"></span>
+    </div>
+</body>
+</html>

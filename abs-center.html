@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    h3 {
+      width: 400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    div {
+      width: 400px;
+      height: 400px;
+      background-color: #bfa;
+      border: 1px solid;
+      margin: 30px auto;
+    }
+
+    .container1 {
+      position: relative;
+    }
+    .inner1 {
+      width: 50%;
+      height: 50%;
+      background-color: orange;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+
+    .container2 {
+      text-align: center;
+    }
+    .inner2 {
+      width: 30%;
+      height: 20%;
+      margin: 0;
+      background-color: gray;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .container2::before {
+      content: "";
+      /* border: 1px solid;
+      display: inline-block; */
+      line-height: 400px;
+      vertical-align: middle;
+    }
+
+    .container3 {
+      position: relative;
+    }
+    .inner3 {
+      box-sizing: border-box;
+      width: 20%;
+      height: 40%;
+      margin: 0;
+      background-color: #caf;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -80px;
+      margin-left: -40px;
+    }
+
+    .wrapper {
+      border-width: 0;
+    }
+    .container4 {
+      display: table-cell;
+      vertical-align: middle;
+      margin: 30px auto;
+    }
+    .inner4 {
+      width: 33%;
+      height: 23%;
+      background-color: #cba;
+    }
+  </style>
+</head>
+<body>
+  <h3>position:absolute + margin: auto</h3>
+  <div class="container1">
+    <div class="inner1"></div>
+  </div>
+  <h3>display: inline-block + ::before :  line-height=其包含块height</h3>
+  <div class="container2">
+    <div class="inner2"></div>
+  </div>
+  <h3>position: absolute + left/top:其包含块宽高的50% + margin-left/top: 本身宽高的-50%(需要子元素宽高明确)</h3>
+  <div class="container3">
+    <div class="inner3"></div>
+  </div>
+  <h3>display: table-cell + vertical-align: middle</h3>
+  <div class="wrapper">
+  <div class="container4">
+    <div class="inner4"></div>
+  </div>
+  </div>
+</body>
+</html>
