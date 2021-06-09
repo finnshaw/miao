@@ -139,10 +139,13 @@
   </script>
   <script id="ch0104/03" type="x">
     var n = Number( prompt("输入n") )
+    // if () {}
+    // if () {}
     console.log(n % 2 != 0 ? "odd" : "even")
   </script>
   <script id="ch0104/04" type="x">
     var c = prompt("输入字符：")
+    //charCodeAt(0)
     console.log(c.charCodeAt() % 2 != 0 ? "YES" : "NO")
   </script>
   <script id="ch0104/05" type="x">
@@ -341,7 +344,198 @@
     console.log(c)
   </script>
 
-
+  <script id="ch0105/01" type="x">
+    var n = Number( prompt("输入n") )
+    var sum = 0;
+    for (var i = 1; i < n+1; i++) {
+      var age = Number( prompt("输入年龄" + i) )
+      sum += age
+    }
+    var average = (sum / n).toFixed(2)
+    console.log(average)
+  </script>
+  <script id="ch0105/02" type="x">
+    var i = 1
+    var sum = 0
+    var m_average
+    while (i < 13) {
+      var m = Number( prompt("输入" + i + "月结余：") )
+      m = Number(m.toFixed(2))
+      sum += m
+      i ++
+    }
+    m_average = (sum / 12).toFixed(2)
+    console.log("$" + m_average)
+  </script>
+  <script id="ch0105/03" type="x">
+    var i = 1
+    var sum = 0
+    var n = Number( prompt("输入n") )
+    while (i < n + 1) {
+      var dt = Number( prompt("输入样本" + i) )
+      sum += dt
+      i ++
+    }
+    var average = (sum / n).toFixed(4)
+    console.log(average)
+  </script>
+  <script id="ch0105/04" type="x">
+    var i = 1
+    var sum = 0
+    var average = 0
+    var n = Number( prompt("输入n") )
+    while (i < n + 1) {
+      var dt = Number( prompt("输入样本" + i) )
+      sum += dt
+      i ++
+    }
+    sum = String(sum)
+    average = ((sum / n).toFixed(5))
+    console.log(sum, average)
+  </script>
+  <script id="ch0105/05" type="x">
+    var n = Number( prompt("输入n") )
+    var compare = 0;
+    for (var i = 1; i < n+1; i++) {
+      var g = Number( prompt("输入成绩" + i) )
+      if (compare < g) {
+        compare = g
+      }
+    }
+    console.log(compare)
+  </script>
+  <script id="ch0105/06" type="x">
+    var n = Number( prompt("输入n") )
+    var num1 = Number( prompt("输入数1") )
+    var max = num1, min = num1
+    for (var i = 2; i < n + 1; i ++) {
+      var num = Number( prompt("输入数" + i) )
+      if (max < num) {
+        max = num
+      } 
+      if(min > num) {
+        min = num
+      }
+    }
+    var rst = max - min
+    console.log(rst)
+  </script>
+  <script id="ch0105/07" type="x">
+    var n = Number( prompt("输入n") )
+    var g = 0
+    var s = 0
+    var b = 0
+    var sum_g = 0;
+    var sum_s = 0;
+    var sum_b = 0;
+    var sum = 0;
+    for (var i = 1; i < n+1; i++) {
+      g = Number( prompt("输入" + i + "天金牌") )
+      s = Number( prompt("输入" + i + "天银牌") )
+      b = Number( prompt("输入" + i + "天铜牌") )
+      sum_g += g
+      sum_s += s
+      sum_b += b
+      sum = sum_g + sum_s + sum_b
+    }
+    console.log(sum_g, sum_s, sum_b, sum)
+  </script>
+  <script id="ch0105/08" type="x">
+    var n = Number( prompt("输入n") )
+    var sum = (n -2) * 180;
+    var sum1 = 0
+    var rst = 0
+    for (var i = 1; i < n; i++) {
+      var deg = Number( prompt("输入内角" + i) )
+      sum1 += deg
+    }
+     rst = sum - sum1
+    console.log(rst)
+  </script>
+  <script id="ch0105/09" type="x">
+    var m = Number( prompt("输入m") )
+    var n = Number( prompt("输入n") )
+    var sum = 0;
+    for (var i = m; i < n + 1; i++) {
+      if ( i % 2 != 0) {
+        sum += i
+      }
+    }
+    console.log(sum)
+  </script>
+  <script id="ch0105/10" type="x">
+    var m = Number( prompt("输入m") )
+    var n = Number( prompt("输入n") )
+    var sum = 0;
+    for (var i = m; i < n + 1; i++) {
+      if ( i % 17 == 0) {
+        sum += i
+      }
+    }
+    console.log(sum)
+  </script>
+  <script id="ch0105/11" type="x">
+    var k = Number( prompt("输入k") )
+    var count_1 = 0;
+    var count_5 = 0;
+    var count_10 = 0;
+    for (var i = 1; i < k + 1; i++) {
+      var num = Number( prompt("输入整数" + i) )
+      if ( num == 1) {
+        count_1 += 1
+      }
+      if (num == 5) {
+        count_5 += 1
+      } 
+      if (num == 10) {
+        count_10 += 1
+      }
+    }
+    console.log(count_1)
+    console.log(count_5)
+    console.log(count_10)
+  </script>
+  <script id="ch0105/12" type="x">
+    var N = Number( prompt("输入N") )
+    var m = Number( prompt("输入m") )
+    var count = 0;
+    for (var i = 1; i < N + 1; i++) {
+      var num = Number( prompt("输入整数" + i) )
+      if ( num == m) {
+        count += 1
+      }
+    }
+    console.log(count)
+  </script>
+  <script id="ch0105/13" type="x">
+    var a = Number( prompt("输入a") )
+    var n = Number( prompt("输入n") )
+    var rst = 1
+    for (var i = 1; i < n + 1; i++) {
+      rst *= a
+    }
+    console.log(rst)
+  </script>
+  <script id="ch0105/14" type="x">
+    var x = Number( prompt("输入x") )
+    var n = Number( prompt("输入n") )
+    for (var i = 1; i < n + 1; i++) {
+      x *= (1 + 0.001)
+    }
+    x = x.toFixed(4)
+    console.log(x)
+  </script>
+  <script id="ch0105/15" type="x">
+    var r = Number( prompt("输入r") )
+    var m = Number( prompt("输入m") )
+    var y = Number( prompt("输入y") )
+    for (var i = 1; i < y + 1; i++) {
+      m *= (1 + r / 100)
+    }
+    m = Math.trunc(m)
+    console.log(m)
+  </script>
+  
 </head>
 <body>
   
