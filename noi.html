@@ -217,17 +217,17 @@
     }
     console.log(p)
   </script>
-  <script id="ch0104/13" type="X">
+  <script id="ch0104/13" type="x">
     var n = Number( prompt("输入n") )
     f1 = -n + 2.5
     f2 = 2 - 1.5 * (n - 3) * (n - 3)
     f3 = n / 2 - 1.5
     var r
-    if (0 <= n < 5) {
+    if (0 <= n && n < 5) {
       r = f1
-    } else if (5 <= n < 10) {
+    } else if (5 <= n && n < 10) {
       r = f2
-    } else if (10 <= n < 20) {
+    } else if (10 <= n && n < 20) {
       r = f3
     }
     var rst = r.toFixed(3)
@@ -252,6 +252,15 @@
         rst = r1
       }
     }
+    //----------------
+    /*if () {
+
+    } else {
+
+    }
+    if(s == "y") {
+      rst = rst + 5
+    }*/
     console.log(rst)
   </script>
   <script id="ch0104/15" type="x">
@@ -266,7 +275,7 @@
     } else if (k > n && k > m) {
       rst = k
     }
-
+    // 避免不必要的组合型选择结构代码
     console.log(rst)
   </script>
   <script id="ch0104/16" type="x">
@@ -309,7 +318,11 @@
     } else if (cal == "*") {
       rst = x * y
     } else if (cal == "/") {
-      rst = x / y
+      if (y == 0) {
+        rst = "Divided by zero!"
+      } else {
+        rst = x / y
+      }
     } else 
     var rst = "Invalid operator!"
     console.log(rst)
@@ -405,6 +418,8 @@
     console.log(compare)
   </script>
   <script id="ch0105/06" type="x">
+    // max = -Infinity
+    // min = Infinity
     var n = Number( prompt("输入n") )
     var num1 = Number( prompt("输入数1") )
     var max = num1, min = num1
@@ -535,7 +550,236 @@
     m = Math.trunc(m)
     console.log(m)
   </script>
-  
+  <script id="ch0105/16" type="x">
+    var n = Number( prompt("输入n") )
+    var k = Number( prompt("输入k") )
+    var price = 200
+    var y = 1
+    while (n < price) {
+      n += 50
+      price *= (1 + k / 100)
+      y ++
+    }
+    if (y <= 20) {
+      console.log(y)
+    } else {
+      console.log("Impossible")
+    }
+  </script>
+  <script id="ch0105/17" type="x">
+    var k = Number( prompt("输入k") )
+    var a = 0
+    var b = 0
+    var num = 0
+    var count = 0
+    while (count < k) {
+      if (count < 2) {
+        a = 1
+        b = 1
+      } else {
+        num = a + b
+        a = b
+        b = num
+      }
+      count ++
+    }
+    console.log(num)
+  </script>
+  <script id="ch0105/18" type="x">
+    var n = Number( prompt("输入n") )
+    var x = 0
+    var y = 0
+    var rst 
+    for (var count = 0; count < n; count ++) {
+      var k = Number( prompt("输入总病例" + (count + 1)) )
+      var m = Number( prompt("输入有疗效病例" + (count + 1)) )
+      if (count == 0) {
+        x = m / k 
+      } else {
+        y = m / k
+        if (y - x > 0.05) {
+        rst = "better"
+        console.log(rst)
+      } else if ( x - y > 0.05) {
+        rst = "worse"
+        console.log(rst)
+      } else {
+        rst = "same"
+        console.log(rst)
+      }
+      } 
+    }
+  </script>
+  <script id="ch0105/19" type="x">
+    var n = Number( prompt("输入n") )
+    var t_sum = 0
+    for (var count = 0; count < n; count ++) {
+      var x = Number( prompt("输入x" + (count + 1) ))
+      var y = Number( prompt("输入y" + (count + 1) ))
+      var k = Number( prompt("输入k" + (count + 1) ))
+      var l = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2))
+      var t = l / 50 * 2 + k * 1.5
+      t_sum += t
+    }
+    t_sum = Math.ceil(t_sum)
+    console.log(t_sum)
+  </script>
+  <script id="ch0105/20" type="x">
+    var h = Number( prompt("输入h") )
+    var l = 0
+    for (var count = 0; count < 10; count ++) {
+      l += h
+      h /= 2
+      l += h
+      if (count == 9) {
+        l -= h
+      }
+    }
+    console.log(l)
+    console.log(h)
+  </script>
+  <script id="ch0105/21" type="x">
+    var n = Number( prompt("输入n") )
+    var interm_amount = 0
+    while ( n != 1) {
+      if (n % 2 == 1) {
+        interm_amount = n
+        n = n * 3 + 1
+        console.log(interm_amount + "*" + 3 + "+" + 1 + "=" + n)
+      } else {
+        interm_amount = n
+        n = n / 2
+        console.log(interm_amount + "/" + 2 + "=" + n)
+      }
+    }
+    console.log("End")
+  </script>
+  <script id="ch0105/22" type="x">
+    var m = 0
+    var surplus = 0
+    var sum = 0
+    var mom_m = 0
+    var month = 0
+    var month_c = 0
+    var hundred = 0
+    var print_month = 0
+    for (var c = 0; c < 12; c ++) {
+      var n = Number( prompt("输入预算" + (c + 1)) )
+      m = 300
+      surplus += (m - n)
+      if (surplus >= 100) {
+         hundred = Math.floor(surplus / 100)
+         hundred *= 100 
+         surplus -= hundred
+         mom_m += hundred
+      } else if (surplus < 0) {
+          month = -(c + 1)
+          month_c += 1
+          if (month_c == 1) {
+            print_month = month
+          }
+      }
+    }
+    sum = surplus + mom_m * 1.2
+    if (month_c == 0) {
+      console.log(sum)
+    } else {
+      console.log(print_month)
+    }
+  </script>
+  <script id="ch0105/23" type="x">
+    var m = Number( prompt("输入m") )
+    var n = Number( prompt("输入n") )
+    var hum = 0
+    for (var i = 1; i < n + 1; i++) {
+      var k = Number( prompt("输入希望取走药品数量k" + i) )
+      if (m < k) {
+        hum += 1 
+      } else {
+          m -= k
+        }
+    }
+    console.log(hum)
+  </script>
+  <script id="ch0105/24" type="x">
+    var n = Number( prompt("输入n") )
+    var times = 0
+    var count = 0
+    var i_count = 0
+    for (var i = 0; i < n; i++) {
+      var shrink = Number( prompt("输入收缩压" + (i + 1)) )
+      var stretch = Number( prompt("输入舒展压" + (i + 1)) )
+      if ((shrink >= 90 && shrink <= 140) && (stretch >= 60 && stretch <= 90)) {
+        times = 1
+        count += 1
+        i_count = i - count
+        if (i - count == i_count) {
+          times += 1
+        }
+      } 
+    }
+    console.log(times)
+  </script>
+  <script id="ch0105/25" type="x">
+    var min = 49
+    var a = 0
+    var b = 0
+    var c = 0
+    var n = 0
+    while (min != n) {
+      a = Math.trunc(min / 49)
+      c = min % 7
+      b = (min % 49 - c) / 7
+      n = c * 81 + b * 9 + a
+      if (min == n && a <= 6 && b <= 6 && c <= 6) {
+        console.log(min)
+        console.log(String(a) + String(b) + String(c))
+        console.log(String(c) + String(b) + String(a))
+      }
+      min ++
+    }
+    
+  </script>
+  <script id="ch0105/26" type="x">
+    var n = Number( prompt("输入n") )
+    var a = 0
+    var b = 0
+    var c = 0
+    var d = 0
+    var count = 0
+    for (var i = 0; i < n; i ++) {
+      var num = Number( prompt("输入num" + (i + 1)) )
+      a = num % 1000
+      b = (num % 100 - a) / 10
+      d = Math.trunc(num / 1000)
+      c = Math.trunc(num / 100) - d * 10
+      if (a - d - c - b > 0) {
+        count ++ 
+      }
+    }
+    console.log(count)
+  </script>
+  <script id="ch0105/27" type="x">
+    var n = Number( prompt("输入n") )
+    var k = Number( prompt("输入k") )
+    
+  </script>
+  <script id="ch0105/28" type="x">
+    var n = Number( prompt("输入n") )
+    var k = Number( prompt("输入k") )
+    
+  </script>
+  <script id="ch0105/29" type="x">
+    var n = Number( prompt("输入n") )
+    var k = Number( prompt("输入k") )
+    
+  </script>
+  <script id="ch0105/30" type="x">
+    var n = Number( prompt("输入n") )
+    var k = Number( prompt("输入k") )
+    
+  </script>
+
 </head>
 <body>
   
