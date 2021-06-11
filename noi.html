@@ -468,6 +468,14 @@
     console.log(rst)
   </script>
   <script id="ch0105/09" type="x">
+
+    // if (m % 2 == 0) {
+    //   m += 1
+    // }
+    // for ( m;; m = m + 2) {
+    //   sum += m
+    // }
+
     var m = Number( prompt("输入m") )
     var n = Number( prompt("输入n") )
     var sum = 0;
@@ -482,6 +490,14 @@
     var m = Number( prompt("输入m") )
     var n = Number( prompt("输入n") )
     var sum = 0;
+
+    //确保m < n
+    if (m > n) {
+      var t = m
+      m = n
+      n = t
+    }
+
     for (var i = m; i < n + 1; i++) {
       if ( i % 17 == 0) {
         sum += i
@@ -496,6 +512,9 @@
     var count_10 = 0;
     for (var i = 1; i < k + 1; i++) {
       var num = Number( prompt("输入整数" + i) )
+
+      //switch
+
       if ( num == 1) {
         count_1 += 1
       }
@@ -551,6 +570,28 @@
     console.log(m)
   </script>
   <script id="ch0105/16" type="x">
+
+    /*
+    var salary = Number( prompt("输入n") )
+    var k = Number( prompt("输入k") )
+    var price = 200
+    var sum = 0
+    var buyed = false
+    for(var i = 0; i < 20; i ++) {
+      sum += salary
+
+      if (sum >= price) {
+        console.log(i + 1)
+        buyed = true
+        break
+      }
+      price *= (1 + k / 100)
+    }
+    if (!buyed) {
+      console,log("imp...")
+    }
+    */
+
     var n = Number( prompt("输入n") )
     var k = Number( prompt("输入k") )
     var price = 200
@@ -576,6 +617,7 @@
       if (count < 2) {
         a = 1
         b = 1
+        num = 1
       } else {
         num = a + b
         a = b
@@ -749,7 +791,7 @@
     var count = 0
     for (var i = 0; i < n; i ++) {
       var num = Number( prompt("输入num" + (i + 1)) )
-      a = num % 1000
+      a = num % 10
       b = (num % 100 - a) / 10
       d = Math.trunc(num / 1000)
       c = Math.trunc(num / 100) - d * 10
@@ -760,24 +802,80 @@
     console.log(count)
   </script>
   <script id="ch0105/27" type="x">
-    var n = Number( prompt("输入n") )
     var k = Number( prompt("输入k") )
-    
+    var solutn = 0 
+    var brk = 1
+    var i = 0
+    while (brk) {
+      i ++
+      solutn += 1 / i
+      if (solutn > k) {
+        console.log(i)
+        brk = 0
+      }
+    }
   </script>
   <script id="ch0105/28" type="x">
     var n = Number( prompt("输入n") )
-    var k = Number( prompt("输入k") )
-    
+    var cal = 0
+    var iscontn = 1
+    var rst = ""
+    while (iscontn) {
+      cal = n % 10
+      rst =  rst + cal + " "
+      n = (n - cal) / 10
+      if (n < 10) {
+        cal = n
+        rst = rst + cal
+        break
+      }
+    }
+    console.log(rst)
   </script>
   <script id="ch0105/29" type="x">
     var n = Number( prompt("输入n") )
-    var k = Number( prompt("输入k") )
     
+    var n1 = n
+    var cal1 = 0
+    for (var i = 0; ; i++) {
+      cal1 = n1 % 10
+      n1 = (n1 - cal1) / 10
+      if (n1 >= 0 && n1 < 10 || (n1 < 0 && n1 > -10)) {
+        i += 1
+        break
+      }
+    }
+
+    var cal = 0
+    var num = 0
+    for (i; i >= 0; i --) {
+      cal = n % 10
+      n = (n - cal) / 10
+      num += cal * Math.pow(10, i)
+    }
+    console.log(num)
   </script>
   <script id="ch0105/30" type="x">
     var n = Number( prompt("输入n") )
     var k = Number( prompt("输入k") )
-    
+    var nn = n
+    var cal = 0
+    var count_3 = 0
+    for (var i = 0;; i ++) {
+      cal = n % 10
+      n = (n - cal) / 10
+      if (cal == 3) {
+        count_3 ++
+      }
+      if (n >= 0 && n < 10 || (n < 0 && n > -10)) {
+        break
+      }
+    }
+    if (nn % 19 == 0 && count_3 == k) {
+      console.log("YES")
+    } else {
+      console.log("NO")
+    }
   </script>
 
 </head>
