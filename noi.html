@@ -877,6 +877,299 @@
       console.log("NO")
     }
   </script>
+  <script id="ch0105/31" type="x">
+    var n = Number( prompt("输入n") )
+    var m = Number( prompt("输入m") )
+    var light_close = ""
+    var light_status = 1
+    for (var i = 1; i < n + 1; i ++) {
+      for (var j = 1; j < m + 1; j ++) {
+        if (j == 1) {
+          light_status = 0
+        } else {
+          if (i % j == 0) {
+            if (light_status) {
+              light_status = 0
+            } else {
+              light_status = 1
+            }
+          }
+        }
+      }
+      if (!light_status) { 
+        if (i < n) {
+          light_close += i + ","
+        } else {
+            light_close += i
+        }
+      }
+    }
+    console.log()
+  </script>
+  <script id="ch0105/32" type="x">
+    var n = Number( prompt("输入n") )
+    var q = 0
+    var p = 0
+    var media_num = 0
+    var sum = 0
+    for (var i = 1; i < n + 1; i ++) {
+      if (i == 1) {
+        p = 1
+        q = 2
+        sum = q / p
+      } else {
+        media_num = p
+        p = q
+        q = q + media_num
+        sum += q / p
+      }
+    }
+    sum = sum.toFixed(4)
+    console.log(sum)
+  </script>
+  <script id="ch0105/33" type="x">
+    var n = Number( prompt("输入n") )
+    var sum = 0
+    for (var i = 1; i < n + 1; i ++) {
+      sum += Math.pow(-1, (i - 1)) * 1 / i
+    }
+    sum = sum.toFixed(4)
+    console.log(sum)
+  </script>
+  <script id="ch0105/34" type="x">
+    var n = Number( prompt("输入n") )
+    var sum = 0
+    var factorial = 1
+    for (var i = 1; i < n + 1; i ++) {
+      factorial *= i
+      sum += factorial
+      }
+      console.log(sum)
+  </script>
+  <script id="ch0105/35" type="x">
+    var n = Number( prompt("输入n") )
+    var e = 1
+    var factorial = 1
+    for (var i = 1; i < n + 1; i ++) {
+      factorial *= i
+      e += 1 / factorial
+    }
+    e = e.toFixed(10)
+    console.log(e)
+  </script>
+  <script id="ch0105/36" type="x">
+    var x = Number( prompt("输入x") )
+    var n = Number( prompt("输入n") )
+    var sum = 1
+    for (var i = 1; i < n + 1; i ++) {
+      sum += Math.pow(x, i)
+    }
+    sum = sum.toFixed(2)
+    console.log(sum)
+  </script>
+  <script id="ch0105/37" type="x">
+    //体力最大值
+    var m = Number( prompt("输入M") )
+    //初始战斗力
+    var n = Number( prompt("输入N") )
+    //初始能量元素
+    var x = Number( prompt("输入X") )
+    var m_start = m
+    var x_count = 0
+    while (m_start == m) {
+      for (var i = 1; i < m + 1; i ++) {
+        if (i % n == 0) {
+          n ++
+        }
+      }
+      m_start = 0
+      x_count = Math.floor(x / n)
+      x_count --
+      x -= x / x_count
+      if (x_count == 0) {
+        break
+      }
+    }
+    console.log(n)
+  </script>
+  <script id="ch0105/38" type="x">
+    var g = Number( prompt("输入数据组数") )
+    var c1
+    for (var j = 0; j < g; j++) {
+      var n = Number( prompt("输入多项式最高次幂n") )
+        for (var i = n; i >= 0; i --) {
+          var c = Number( prompt("输入多项式" + i + "的系数" ))
+          if (i == 0) {
+            if (n != 0) {
+              c1 += ""
+            } else {
+              c1 = "0"
+              break
+            }
+          } else {
+            c1 += (c * i) + " "
+            }
+        }
+      console.log(c1)
+      //把上一组数据求导的系数结果清空
+      c1 = ""
+      }
+  </script>
+  <script id="ch0105/39" type="x">
+    var n = Number( prompt("输入n") )
+    var cal = 0
+    var b = 0
+    var count = 0
+    var sum = 0
+    for (var i = 1; i < n + 1; i ++) {
+      cal = i
+      while (cal >= 10) {
+        b = cal % 10
+        cal = (cal - b) / 10
+        if (b == 7) {
+          count ++
+          break
+        }
+      }
+      if (i % 7 != 0 && count != 1) {
+        sum += i * i
+      }
+      //每个整数求出其某一位上出现7的次数之后把该次数重置为0
+      count = 0
+    }
+    console.log(sum)
+  </script>
+  <script id="ch0105/40" type="x">
+    var n = Number( prompt("输入n") )
+    var cal = 0
+    var b = 0
+    var count = 0
+    for (var i = 1; i < n + 1; i ++) {
+      if (i == 1) {
+        count ++
+      } else {
+          cal = i
+          while (cal >= 10) {
+            b = cal % 10
+            cal = (cal - b) / 10
+            if (b == 1) {
+              count ++
+            }
+            if (cal == 1) {
+              count ++
+            }
+        }
+      }
+    }
+    console.log(count)
+  </script>
+  <script id="ch0105/41" type="x">
+    var n = Number( prompt("输入n") )
+    var m = Number( prompt("输入m") )
+    var i = n
+    var b = 0
+    var cal = 0
+    var count = 0
+    for (i; i < m + 1; i ++) {
+      if (i == 2) {
+        count ++
+      } else {
+          cal = i
+          while (cal >= 10) {
+            b = cal % 10
+            cal = (cal - b) / 10
+            if (b == 2) {
+            count ++
+            }
+            if (cal == 2) {
+              count ++
+            }
+          }
+        }
+    }
+    console.log(count)
+  </script>
+  <script id="ch0105/42" type="x">
+    var h = Number(prompt("请输入高"))
+    var w = Number(prompt("请输入宽"))
+    var s = String(prompt("请输入字符"))
+    var isSolid = Number(prompt("请输入是否实心（0 or 1）"))
+    var str = ""
+    for (var i = 1; i < h + 1; i ++) {
+      for (var j = 1; j < w + 1; j ++) {
+        if (isSolid) {
+          str += s
+        } else {
+          if (i == 1 || i == h) {
+            str += s
+          } else {
+            if (j == 1 || j == w) {
+              str += s
+            } else {
+              str += " "
+            }
+          }
+        }
+      }
+      console.log(str)
+      str = ""
+    }
+  </script>
+  <script id="ch0105/43" type="x">
+    var n = Number(prompt("请输入n"))
+    var num1 = 0
+    var num2 = 0
+    for (var i =2; i < n; i ++) {
+      num1 = i
+      for (var j = i; j < n; j ++) {
+        num2 = j
+        if (num1 * num2 == n) {
+          console.log(num2)
+          break
+        }
+      }
+    }
+  </script>
+  <script id="ch0105/44" type="x">
+    var n = Number( prompt("输入n") )
+    var count = 0
+    var isPrime = 0
+    var str = 0
+    for (var i = 2; i < 100000; i ++) {
+      if (i == 2) {
+        count ++
+      } else {
+          for (var j = 2; j < i; j ++) {
+            if (i % j == 0) {
+              isPrime = 0
+              break
+            } else {
+              isPrime = 1
+            }
+          }
+          if (isPrime) {
+            count ++
+          }
+      }
+      if (count == n) {
+        str = i
+        break
+      }
+    }
+    console.log(str)
+  </script>
+  <script id="ch0105/45" type="x">
+    var n = Number( prompt("输入n") )
+    var g = 0
+    var sum = 0
+    var c = 0
+    for (var i = 1; i < n; i ++) {
+      for (var j = 1; j < n + 1; j += i) {
+
+      }
+    }
+    console.log(sum)
+  </script>
 
 </head>
 <body>
