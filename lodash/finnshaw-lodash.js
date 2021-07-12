@@ -50,13 +50,32 @@ var finnshaw = function () {
     return res
   }
 
-  //flatenDeep
-  function flatenDeep(arr) {
+  //flattenDeep
+  function flattenDeep(arr) {
     let res = []
     for(let i = 0; i < arr.length; i++) {
       let e = arr[i]
       if(Array.isArray(e)) {
-        e = flatenDeep(e)
+        e = flattenDeep(e)
+        for(let j = 0; j < e.length; j++) {
+          res.push(e[j])
+        }
+      } else {
+        res.push(e)
+      }
+    }
+    return res
+  }
+  //flattenDepth
+  function flattenDepth(arr, depth = 1) {
+    if(depth === 0) {
+      return arr.slice()
+    } 
+    let res = []
+    for(let i = 0; i < arr.length; i++) {
+      let e = arr[i]
+      if(Array.isArray(e)) {
+        e = flattenDepth(e, depth - 1)
         for(let j = 0; j < e.length; j++) {
           res.push(e[j])
         }
@@ -74,6 +93,7 @@ var finnshaw = function () {
     chunk: chunk,
     compact: compact,
     uniq: uniq,
-    flatenDeep: flatenDeep,
+    flattenDeep: flattenDeep,
+    flattenDepth: flattenDepth,
   }
 }()
