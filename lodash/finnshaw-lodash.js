@@ -128,7 +128,7 @@ var finnshaw = function () {
     let mapped = []
     if(typeof f === 'function') {
       forEach(coll, (item, key, coll) => {
-        mapped.push(f(item))
+        mapped.push(f(item, key, coll))
       })
     } else {
       forEach(coll,(item, key, coll) => {
