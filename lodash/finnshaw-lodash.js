@@ -1,8 +1,0 @@
-var finnshaw = function () {
-  
-
-
-  return {
-
-  }
-}()
