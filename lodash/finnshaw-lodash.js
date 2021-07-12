@@ -118,7 +118,7 @@ var finnshaw = function () {
    //forEach
    function forEach(coll, action) {
     for(let key in coll) {
-      action(coll[key], key)
+      action(coll[key], key, coll)
     }
     return coll
   }
@@ -127,11 +127,11 @@ var finnshaw = function () {
   function map(coll, f) {
     let mapped = []
     if(typeof f === 'function') {
-      forEach(coll, (item, key) => {
+      forEach(coll, (item, key, coll) => {
         mapped.push(f(item))
       })
     } else {
-      forEach(coll,(item, key) => {
+      forEach(coll,(item, key, coll) => {
         mapped.push(item)
       })
     }
