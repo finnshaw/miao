@@ -18,7 +18,7 @@
       margin-right: -1px;
       background-color: transparent;
     }
-    #reg {
+    #reg, #reStr {
       width: 300px;
       margin: 0;
       padding: 0;
@@ -42,16 +42,32 @@
       font-size: 16px;
       overflow-y: scroll;
       overflow-x: hidden;
+      box-sizing: border-box;
+      word-break: break-all;  /* pre 和 textarea要设置相同的world-break值，避免换行出现问题 */
+      white-space: pre-wrap;
+      border: 1px solid;
     }
+
+    #reRes {
+      width: 300px;
+      height: 200px;
+      border: 1px solid;
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+      font-family: monospace;
+      font-size: 16px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      word-break: break-all;
+      white-space: pre-wrap;
+    }
+
     #strInput {
       background-color: transparent;
-      word-break: break-all;  /* pre 和 textarea要设置相同的world-break值，避免换行出现问题 */
     }
     #result {
       color: transparent;
-      border: 1px solid;
-      white-space: pre-wrap;
-      word-break: break-all;
     }
 
     p#regError {
@@ -69,7 +85,7 @@
   <label><input type="checkbox" onclick="run()" name="" id="ignoreCase">i</label><br>
   <input type="text" oninput="run()" name="" id="reg" value="fo."><br>
   <p id="regError"></p>
-  输入内容：<br>
+  输入待匹配内容：<br>
   <div class="wrapper">
     <pre id="result"></pre>
     <textarea onscroll="syncScrollPos()" oninput="run()" name="" id="strInput" cols="30" rows="10">foofkgaggfo
@@ -77,6 +93,10 @@
       ajkgaklgfocgjag   foofoofoojaffffjkfjjfop
       fojj</textarea>
   </div>
+  输入替换内容：<br>
+    <input oninput="run()" id="reStr" type="text"><br>
+  替换结果：<br>
+    <pre id="reRes"></pre>
   <script>
     //当textarea开始滚动时，运行setScroll函数让pre同步滚动
     function syncScrollPos() {
@@ -87,8 +107,12 @@
     //正则匹配函数
     function run() {
       console.time('run')  //测试函数运行一次的时间
+
       let regSrc = reg.value  //拿到input元素的输入内容
       let flags = getFlags()  //拿到checkbox元素的勾选与否的值
+
+      let replaceStr = reStr.value  //拿到replace的第二个参数
+
       if(regSrc == '') {
         result.innerHTML = ''
         regError.innerHTML = 'please input any regular expression'
@@ -105,8 +129,18 @@
         regError.innerHTML = e.message
         return
       }
+
       console.log(regex)
       let str = strInput.value  //拿到textarea元素中的输入内容（需要匹配的字符串）
+
+      //replace功能
+      if(replaceStr) {
+        replaceRes = str.replace(regex, replaceStr)
+        reRes.innerHTML = replaceRes
+      } else {
+        reRes.innerHTML = str
+      }
+
       let match
       //正则带g：
       if(regex.global) {
