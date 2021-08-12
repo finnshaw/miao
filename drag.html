@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    main.wrp {
+      border: 1px solid gray;
+      position: relative;
+      margin: 0 auto;
+    }
+    div.drag {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrp" style="width: 600px; height: 600px;">
+    <div class="drag" style="top: 200px; left: 200px; background-color: #bfa;"></div>
+    <div class="drag" style="top: 250px; left: 250px; background-color: #ace;"></div>
+    <div class="drag" style="top: 300px; left: 300px; background-color: #878;"></div>
+  </main>
+  
+  <script>
+    let wrp = document.querySelector('.wrp')
+    let maxZindex = 4
+    //let drag = document.querySelector('#drag')
+    document.addEventListener('mousedown', function(e) {
+      if(!e.target.classList.contains('drag')) {
+        return
+      }
+      let el = e.target
+      el.style.zIndex = maxZindex++
+      let h = Math.random() * 360
+      let s = Math.random() * 101
+      let l = Math.random() * 101
+      h = Math.ceil(h)
+      s = Math.ceil(s)
+      l = Math.ceil(l)
+      el.style.backgroundColor = 'hsl(' + h + ',' + s + '%' + ',' + l + '%' + ')'
+      let startPosX = e.clientX
+      let startPosY = e.clientY
+      let eleStartX = parseFloat(el.style.left)
+      let eleStartY = parseFloat(el.style.top)
+      window.addEventListener('mousemove', function move(ev) {
+        if(ev.which === 0 || ev.buttons === 0) {
+          window.removeEventListener('mousemove', move)
+          return
+        }
+        let currPosX= ev.clientX
+        let currPosY= ev.clientY
+        let dx = currPosX - startPosX
+        let dy = currPosY - startPosY
+        //每次改变的定位是两个相邻鼠标移动点的距离
+        // startPosX = currPosX
+        // startPosY = currPosY
+
+        let left = eleStartX + dx
+        let top = eleStartY + dy
+        //磁吸和边界
+        if(left < 50) {
+          left = 0
+        }
+        if(left > parseFloat(wrp.style.width) - el.offsetWidth - 50) { //dom.style.xxx只能读到html元素的style属性值
+          left = parseFloat(wrp.style.width) - el.offsetWidth
+        }
+        if(top < 50) {
+          top = 0
+        }
+        if(top > parseFloat(wrp.style.height) - el.offsetHeight - 50) {
+          top = parseFloat(wrp.style.height) - el.offsetHeight
+        }
+        el.style.left = left + 'px'
+        el.style.top = top + 'px'
+      })
+    })
+  </script>
+</body>
+</html>

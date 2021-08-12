@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .board {
+    border: 2px solid #C8C8C8;
+    display: block;
+  }
+  input,
+  button {
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+  .clear {
+    margin-left: 20px;
+  }
+</style>
+<body>
+
+  <script>
+    //svg画板
+    let svg = document.createElementNS('http://www.w3.org/2000/svg','svg')
+    document.body.appendChild(svg)
+    svg.classList.add('board')
+    svg.setAttribute("width", 600)
+    svg.setAttribute("height", 600)
+    //颜色选择
+    let colorInput = document.createElement('input')
+    colorInput.setAttribute('type', 'color')
+    document.body.appendChild(colorInput)
+    let textNodeW = document.createTextNode('颜色:')
+    document.body.insertBefore(textNodeW, colorInput)
+    //画线粗细选择
+    let widthInput = document.createElement('input')
+    widthInput.setAttribute('type', 'range')
+    widthInput.setAttribute('min', '1')
+    widthInput.setAttribute('max', '10')
+    widthInput.setAttribute('value', '2')
+    document.body.appendChild(widthInput)
+    let textNodeC = document.createTextNode('粗细:')
+    document.body.insertBefore(textNodeC, widthInput)
+    //图形选择按钮
+    let tollTextNode = document.createTextNode('形状：')
+    document.body.insertBefore(tollTextNode, svg.nextSibling)
+    let lineButton = document.createElement('button')
+    lineButton.textContent = '一'
+    document.body.insertBefore(lineButton, tollTextNode.nextSibling)
+    let ellipseButton = document.createElement('button')
+    ellipseButton.textContent = '⚪'
+    document.body.insertBefore(ellipseButton, lineButton.nextSibling)
+    let rectButton = document.createElement('button')
+    rectButton.textContent = '▢'
+    document.body.insertBefore(rectButton, ellipseButton.nextSibling)
+    let shape = 'line'
+    lineButton.onclick = function() { //形状功能按钮绑定事件
+      shape = 'line'
+    }
+    ellipseButton.onclick = function() {
+      shape = 'ellipse'
+    }
+    rectButton.onclick = function() {
+      shape = 'rect'
+    }
+
+    //清除功能：
+    let clear = document.createElement('button')
+    clear.textContent = '清除'
+    clear.classList.add('clear')
+    document.body.append(clear)
+    clear.addEventListener('click', function(e) {
+      svg.innerHTML = ''
+    })
+
+    //上一个点的坐标
+    let lastPos = null
+
+    svg.addEventListener('mousedown', function(e) {
+      if(shape == 'line') {
+        //polyline版本：鼠标按下去到松开只画一个元素，鼠标移动产生的pos的坐标作为属性持续加入到polyline中
+        let line = document.createElementNS('http://www.w3.org/2000/svg','polyline')
+        let pos = mousePos(svg)
+        line.setAttribute('stroke', colorInput.value)
+        line.setAttribute('stroke-width', widthInput.value)
+        line.setAttribute('stroke-linecap', 'round')
+        line.setAttribute('stroke-linejoin', 'round') //路径转角处使用的形状
+        line.setAttribute('fill', 'none')
+        let points = `${pos.x} ${pos.y} ` //画一个polyline元素的点的数列，可用逗号或者空格分隔，末尾加一个空格，因为鼠标移动事件会添加点到里面
+        line.setAttribute('points', points)
+        svg.append(line)
+
+        //画画函数
+        function drawLine() {
+          let pos = mousePos(svg)
+          points += `${pos.x} ${pos.y} ` 
+          line.setAttribute('points', points)
+
+          //line版本：每次两个鼠标移动的位置之间画一条线，svg元素太多导致性能问题
+          // let line = document.createElementNS('http://www.w3.org/2000/svg','line')
+          // let pos = mousePos(svg)
+          // if(lastPos == null) {
+          //   line.setAttribute('x1', pos.x)
+          //   line.setAttribute('y1', pos.y)
+          // } else {
+          //   line.setAttribute('x1', lastPos.x)
+          //   line.setAttribute('y1', lastPos.y)
+          // }
+
+          // line.setAttribute('x2', pos.x)
+          // line.setAttribute('y2', pos.y)
+          // line.setAttribute('stroke', colorInput.value)
+          // line.setAttribute('stroke-width', widthInput.value)
+          // line.setAttribute('stroke-linecap', 'round')
+          // lastPos = pos
+          // svg.append(line)
+        }
+        svg.addEventListener('mousemove', drawLine)
+        svg.addEventListener('mouseup', function once(e) {
+          lastPos = null
+          svg.removeEventListener('mouseup', once)
+          svg.removeEventListener('mousemove', drawLine)
+        })
+      }
+      
+      if(shape == 'ellipse') {
+        let ellipse = document.createElementNS('http://www.w3.org/2000/svg','ellipse')
+        ellipse.setAttribute('stroke', colorInput.value)
+        ellipse.setAttribute('stroke-width', widthInput.value)
+        ellipse.setAttribute('fill', 'none')
+        svg.append(ellipse)
+        let startPos = mousePos(svg)
+        function drawEllipse() {
+          let currPos = mousePos(svg)
+          let cx = (startPos.x + currPos.x) / 2
+          let cy = (startPos.y + currPos.y) / 2
+          ellipse.setAttribute('cx', cx)
+          ellipse.setAttribute('cy', cy)
+          let rx = Math.abs(startPos.x - currPos.x) / 2
+          let ry = Math.abs(startPos.y - currPos.y) / 2
+          ellipse.setAttribute('rx', rx)
+          ellipse.setAttribute('ry', ry)
+        }
+
+        svg.addEventListener('mousemove', drawEllipse)
+        svg.addEventListener('mouseup', function once(e) {
+          lastPos = null
+          svg.removeEventListener('mouseup', once)
+          svg.removeEventListener('mousemove', drawEllipse)
+
+        })
+      }
+      //画矩形
+      if(shape == 'rect') {
+        let rect = document.createElementNS('http://www.w3.org/2000/svg','rect')
+        rect.setAttribute('stroke', colorInput.value)
+        rect.setAttribute('stroke-width', widthInput.value)
+        rect.setAttribute('fill', 'none')
+        svg.append(rect)
+        let startPos = mousePos(svg)
+        function drawRect() {
+          let currPos = mousePos(svg)
+          let x = startPos.x
+          let y = startPos.y
+          if(startPos.x > currPos.x) {
+            x = currPos.x
+          }
+          if(startPos.y > currPos.y) {
+            y = currPos.y
+          }
+          rect.setAttribute('x', x)
+          rect.setAttribute('y', y)
+          let w = Math.abs(startPos.x - currPos.x)
+          let h = Math.abs(startPos.y - currPos.y)
+          rect.setAttribute('width', w)
+          rect.setAttribute('height', h)
+        }
+
+        svg.addEventListener('mousemove', drawRect)
+        svg.addEventListener('mouseup', function once(e) {
+          lastPos = null
+          svg.removeEventListener('mouseup', once)
+          svg.removeEventListener('mousemove', drawRect)
+
+        })
+      }
+    })
+
+    //撤销功能 事件绑定
+    document.addEventListener('keydown', function(e) {
+      //console.log(e) //找组合键的判断条件
+      if(e.ctrlKey && e.key == 'z') {
+        if(svg.lastElementChild) {
+          svg.removeChild(svg.lastElementChild)
+        }
+      }
+    })
+    
+    //线条粗细值span
+    let widthSpan = document.createElement('span')
+    widthSpan.textContent = 2
+    document.body.insertBefore(widthSpan, widthInput.nextSibling)
+    widthInput.addEventListener('input', function(e) {
+      widthSpan.textContent = widthInput.value
+    })
+
+    function mousePos(node) {
+      let box = node.getBoundingClientRect()
+      return {
+        x: window.event.clientX - box.x,
+        y: window.event.clientY - box.y,
+      }
+    }
+  </script>
+</body>
+</html>
